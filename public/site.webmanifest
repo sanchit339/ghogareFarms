@@ -1,0 +1,22 @@
+{
+  "name": "Ghogare Farms — Shivneri Hapus Mangoes",
+  "short_name": "Ghogare Farms",
+  "description": "GI Tagged Shivneri Hapus Alphonso mangoes from Junnar. Direct farm delivery to Pune.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDF6E8",
+  "theme_color": "#C87941",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
