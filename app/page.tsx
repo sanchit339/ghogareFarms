@@ -63,6 +63,88 @@ const faqsByLang: Record<Lang, { q: string; a: string }[]> = {
   ],
 }
 
+const pageTextByLang: Record<Lang, {
+  headerSub: string
+  heroSocialProof: string
+  reviewsMeta: string
+  box1Features: string[]
+  box2Features: string[]
+  box2Save: string
+  bulkTags: string[]
+  giBadge: string
+  giTitle: string
+  giDesc: string
+  giPills: string[]
+  areasSeo: string
+  waGroupTags: string[]
+  finalTitle: string
+  finalSub: string
+  footerAddress: string
+  footerWhatsapp: string
+  footerSeo: string[]
+}> = {
+  en: {
+    headerSub: 'Junnar · GI Tagged',
+    heroSocialProof: '127+ happy Pune families this season ⭐⭐⭐⭐⭐',
+    reviewsMeta: '⭐⭐⭐⭐⭐ 4.9/5 from 127+ orders',
+    box1Features: ['GI Tagged Shivneri Hapus', 'Naturally ripened in hay', 'No carbide, no chemicals', 'Free delivery in Pune'],
+    box2Features: ['Best value for families', 'Great for gifting & sharing', 'Same day WhatsApp confirmation', 'Pay after delivery (COD)'],
+    box2Save: 'SAVE ₹XX',
+    bulkTags: ['🏢 IT Offices', '🏠 Societies', '💍 Weddings', '🎁 Gifts'],
+    giBadge: 'December 2024 — Government of India',
+    giTitle: "Pune's Only GI Tagged Junnar Hapus",
+    giDesc: "In December 2024, the Government of India granted the prestigious Geographical Indication (GI) tag to Shivneri Hapus from Junnar — the birthplace of Chhatrapati Shivaji Maharaj. This makes Junnar Hapus legally certified and one of Maharashtra's most exclusive mango varieties. Ghogare Farms grows these GI certified mangoes and delivers them directly to Pune.",
+    giPills: ['🇮🇳 Govt. of India Certified', '📍 Junnar, Pune District', '🌿 No Chemicals Ever', '🚫 No Middlemen'],
+    areasSeo: 'Delivering GI Tagged Shivneri Hapus Alphonso mangoes to Baner, Wakad, Hinjewadi, Kothrud, Viman Nagar, Koregaon Park, Aundh, Pimple Saudagar, Hadapsar, Magarpatta, Bavdhan, Pashan and all of Pune, Maharashtra.',
+    waGroupTags: ['📦 Stock alerts', '💰 Early-bird prices', '🏡 Harvest updates'],
+    finalTitle: 'Season is Live. Stock is Limited.',
+    finalSub: "Shivneri Hapus sells out fast every year. Don't miss the freshest Pune-delivered mangoes.",
+    footerAddress: '📍 Junnar Taluka, Pune District, Maharashtra',
+    footerWhatsapp: '💬 WhatsApp Us',
+    footerSeo: ['Shivneri Hapus Mangoes Pune', 'Junnar GI Tagged Alphonso', 'Carbide Free Mango Delivery', 'Baner · Wakad · Hinjewadi'],
+  },
+  hi: {
+    headerSub: 'जुन्नर · GI टैग',
+    heroSocialProof: 'इस सीज़न में पुणे के 127+ खुश परिवार ⭐⭐⭐⭐⭐',
+    reviewsMeta: '⭐⭐⭐⭐⭐ 127+ ऑर्डर से 4.9/5',
+    box1Features: ['GI टैग शिवनेरी हापूस', 'पुआल में प्राकृतिक पकाई', 'बिना कार्बाइड, बिना केमिकल', 'पुणे में फ्री डिलीवरी'],
+    box2Features: ['परिवार के लिए बेहतरीन वैल्यू', 'गिफ्टिंग और शेयरिंग के लिए बढ़िया', 'उसी दिन WhatsApp कन्फर्मेशन', 'डिलीवरी के बाद पेमेंट (COD)'],
+    box2Save: '₹XX बचत',
+    bulkTags: ['🏢 IT ऑफिस', '🏠 सोसायटी', '💍 शादियां', '🎁 गिफ्ट्स'],
+    giBadge: 'दिसंबर 2024 — भारत सरकार',
+    giTitle: 'पुणे का एकमात्र GI टैग जुन्नर हापूस',
+    giDesc: 'दिसंबर 2024 में भारत सरकार ने जुन्नर के शिवनेरी हापूस को प्रतिष्ठित Geographical Indication (GI) टैग दिया। जुन्नर छत्रपति शिवाजी महाराज की जन्मभूमि है। इससे जुन्नर हापूस कानूनी रूप से प्रमाणित हुआ और महाराष्ट्र की सबसे खास आम किस्मों में शामिल हुआ। घोगरे फार्म्स यही GI प्रमाणित आम सीधे पुणे तक पहुंचाता है।',
+    giPills: ['🇮🇳 भारत सरकार प्रमाणित', '📍 जुन्नर, पुणे जिला', '🌿 बिना रसायन', '🚫 कोई बिचौलिया नहीं'],
+    areasSeo: 'GI टैग वाले शिवनेरी हापूस अल्फांसो आम की डिलीवरी बाणेर, वाकड, हिंजेवाड़ी, कोथरूड, विमान नगर, कोरेगांव पार्क, औंध, पिंपले सौदागर, हडपसर, मगरपट्टा, बावधन, पाषाण और पूरे पुणे, महाराष्ट्र में उपलब्ध है।',
+    waGroupTags: ['📦 स्टॉक अलर्ट', '💰 शुरुआती ऑफर', '🏡 हार्वेस्ट अपडेट'],
+    finalTitle: 'सीज़न चालू है। स्टॉक सीमित है।',
+    finalSub: 'हर साल शिवनेरी हापूस जल्दी खत्म हो जाता है। पुणे डिलीवरी वाले ताजे आम मिस न करें।',
+    footerAddress: '📍 जुन्नर तालुका, पुणे जिला, महाराष्ट्र',
+    footerWhatsapp: '💬 WhatsApp करें',
+    footerSeo: ['शिवनेरी हापूस आम पुणे', 'जुन्नर GI टैग अल्फांसो', 'कार्बाइड मुक्त आम डिलीवरी', 'बाणेर · वाकड · हिंजेवाड़ी'],
+  },
+  mr: {
+    headerSub: 'जुन्नर · GI मानांकन',
+    heroSocialProof: 'या हंगामात पुण्यातील 127+ आनंदी कुटुंबे ⭐⭐⭐⭐⭐',
+    reviewsMeta: '⭐⭐⭐⭐⭐ 127+ ऑर्डरमधून 4.9/5',
+    box1Features: ['GI मानांकन शिवनेरी हापूस', 'गवतात नैसर्गिक पिकवलेले', 'कार्बाइड नाही, केमिकल नाही', 'पुण्यात मोफत डिलिव्हरी'],
+    box2Features: ['कुटुंबासाठी सर्वोत्तम मूल्य', 'गिफ्टिंग आणि शेअरिंगसाठी उत्तम', 'त्याच दिवशी WhatsApp पुष्टी', 'डिलिव्हरीनंतर पेमेंट (COD)'],
+    box2Save: '₹XX बचत',
+    bulkTags: ['🏢 IT ऑफिसेस', '🏠 सोसायट्या', '💍 लग्नसमारंभ', '🎁 भेटवस्तू'],
+    giBadge: 'डिसेंबर 2024 — भारत सरकार',
+    giTitle: 'पुण्यातील एकमेव GI मानांकन जुन्नर हापूस',
+    giDesc: 'डिसेंबर 2024 मध्ये भारत सरकारने जुन्नरच्या शिवनेरी हापूसला प्रतिष्ठित Geographical Indication (GI) मानांकन दिले. जुन्नर ही छत्रपती शिवाजी महाराजांची जन्मभूमी आहे. यामुळे जुन्नर हापूसला कायदेशीर प्रमाणन मिळाले आणि तो महाराष्ट्रातील सर्वात खास आंबा प्रकारांपैकी एक ठरला. घोगरे फार्म्स हे GI प्रमाणित आंबे थेट पुण्यात पोहोचवते.',
+    giPills: ['🇮🇳 भारत सरकार प्रमाणित', '📍 जुन्नर, पुणे जिल्हा', '🌿 रसायनमुक्त', '🚫 मध्यस्थ नाहीत'],
+    areasSeo: 'GI मानांकन असलेले शिवनेरी हापूस अल्फोन्सो आंबे बाणेर, वाकड, हिंजेवाडी, कोथरूड, विमान नगर, कोरेगाव पार्क, औंध, पिंपळे सौदागर, हडपसर, मगरपट्टा, बावधन, पाषाण आणि संपूर्ण पुणे, महाराष्ट्र येथे डिलिव्हर केले जातात.',
+    waGroupTags: ['📦 स्टॉक अलर्ट', '💰 अर्ली-बर्ड किंमत', '🏡 हार्वेस्ट अपडेट्स'],
+    finalTitle: 'हंगाम सुरू आहे. साठा मर्यादित आहे.',
+    finalSub: 'दरवर्षी शिवनेरी हापूस लवकर संपतो. पुणे डिलिव्हरीतील ताजे आंबे चुकवू नका.',
+    footerAddress: '📍 जुन्नर तालुका, पुणे जिल्हा, महाराष्ट्र',
+    footerWhatsapp: '💬 WhatsApp वर संपर्क',
+    footerSeo: ['शिवनेरी हापूस आंबे पुणे', 'जुन्नर GI मानांकन अल्फोन्सो', 'कार्बाइडमुक्त आंबा डिलिव्हरी', 'बाणेर · वाकड · हिंजेवाडी'],
+  },
+}
+
 // ──────────────────────────────────────────────────────────
 // COMPONENT
 // ──────────────────────────────────────────────────────────
@@ -70,6 +152,7 @@ export default function HomePage() {
   const [lang, setLang] = useState<Lang>('en')
   const t = translations[lang]
   const faqs = faqsByLang[lang]
+  const ui = pageTextByLang[lang]
 
   // Scroll animation
   useEffect(() => {
@@ -131,7 +214,7 @@ export default function HomePage() {
           <span style={{ fontSize: 22 }}>🥭</span>
           <div>
             <p style={{ fontSize: 13, fontWeight: 800, color: 'var(--earth)', lineHeight: 1, fontFamily: 'var(--font-playfair)' }}>Ghogare Farms</p>
-            <p style={{ fontSize: 9, color: 'var(--amber)', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Junnar · GI Tagged</p>
+            <p style={{ fontSize: 9, color: 'var(--amber)', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{ui.headerSub}</p>
           </div>
         </div>
         {/* Lang buttons */}
@@ -141,7 +224,7 @@ export default function HomePage() {
               key={l}
               onClick={() => setLang(l)}
               className={`lang-btn font-deva ${lang === l ? 'active' : ''}`}
-              aria-label={`Switch to ${l}`}
+              aria-label={`${t.lang_label}: ${(t as any)[`lang_${l}`]}`}
             >
               {l === 'en' ? 'English' : l === 'hi' ? 'हिंदी' : 'मराठी'}
             </button>
@@ -191,7 +274,7 @@ export default function HomePage() {
               onClick={() => handleWAClick('generic', 'Hero CTA')}
               className="btn-wa text-lg"
               style={{ flex: 1 }}
-              aria-label="Order Shivneri Hapus mangoes on WhatsApp"
+              aria-label={`${t.hero_cta} - WhatsApp`}
             >
               <IconWA />{t.hero_cta}
             </a>
@@ -213,7 +296,7 @@ export default function HomePage() {
               ))}
             </div>
             <p style={{ color: '#FFE4B0', fontSize: 13, fontWeight: 600 }}>
-              127+ happy Pune families this season ⭐⭐⭐⭐⭐
+              {ui.heroSocialProof}
             </p>
           </div>
         </div>
@@ -245,7 +328,7 @@ export default function HomePage() {
           <div style={{ textAlign: 'center', marginBottom: 40 }} data-animate>
             <h2 className="section-title font-deva">{t.why_title}</h2>
             <div className="divider" />
-            <p style={{ marginTop: 10, color: '#8B7355', fontSize: 13 }}>⭐⭐⭐⭐⭐ 4.9/5 from 127+ orders</p>
+            <p style={{ marginTop: 10, color: '#8B7355', fontSize: 13 }}>{ui.reviewsMeta}</p>
           </div>
           <div className="hide-scrollbar" style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 12, scrollSnapType: 'x mandatory' }}>
             {[
@@ -318,7 +401,7 @@ export default function HomePage() {
                 </div>
               </div>
               <ul style={{ margin: '12px 0', listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {['GI Tagged Shivneri Hapus', 'Naturally ripened in hay', 'No carbide, no chemicals', 'Free delivery in Pune'].map(item => (
+                {ui.box1Features.map(item => (
                   <li key={item} style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 13, color: 'var(--forest)' }}>
                     <IconCheck /><span>{item}</span>
                   </li>
@@ -329,7 +412,7 @@ export default function HomePage() {
                 onClick={() => handleWAClick('dozen1', '1 Dozen Box')}
                 className="btn-wa"
                 style={{ width: '100%', marginTop: 16, borderRadius: 12 }}
-                aria-label="Order 1 dozen Shivneri Hapus mangoes"
+                aria-label={`${t.order_wa} - ${t.box1_name}`}
               >
                 <IconWA />{t.order_wa}
               </a>
@@ -351,11 +434,11 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="font-display" style={{ fontSize: 26, fontWeight: 900, color: 'var(--amber)' }}>{t.box2_price}</p>
-                  <p style={{ fontSize: 10, color: 'var(--forest)', fontWeight: 700, textAlign: 'right' }}>SAVE ₹XX</p>
+                  <p style={{ fontSize: 10, color: 'var(--forest)', fontWeight: 700, textAlign: 'right' }}>{ui.box2Save}</p>
                 </div>
               </div>
               <ul style={{ margin: '12px 0', listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {['Best value for families', 'Great for gifting & sharing', 'Same day WhatsApp confirmation', 'Pay after delivery (COD)'].map(item => (
+                {ui.box2Features.map(item => (
                   <li key={item} style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 13, color: 'var(--forest)' }}>
                     <IconCheck /><span>{item}</span>
                   </li>
@@ -366,7 +449,7 @@ export default function HomePage() {
                 onClick={() => handleWAClick('dozen2', '2 Dozen Box')}
                 className="btn-wa"
                 style={{ width: '100%', marginTop: 16, borderRadius: 12 }}
-                aria-label="Order 2 dozen Shivneri Hapus mangoes"
+                aria-label={`${t.order_wa} - ${t.box2_name}`}
               >
                 <IconWA />{t.order_wa}
               </a>
@@ -385,7 +468,7 @@ export default function HomePage() {
               <h3 className="font-display font-deva" style={{ fontSize: 22, fontWeight: 800, marginBottom: 8 }}>{t.box3_name}</h3>
               <p className="font-deva" style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: 20 }}>{t.box3_desc}</p>
               <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 20 }}>
-                {['🏢 IT Offices', '🏠 Societies', '💍 Weddings', '🎁 Gifts'].map(tag => (
+                {ui.bulkTags.map(tag => (
                   <span key={tag} style={{ background: 'rgba(255,255,255,0.15)', borderRadius: 20, padding: '4px 12px', fontSize: 12, fontWeight: 600 }}>{tag}</span>
                 ))}
               </div>
@@ -394,7 +477,7 @@ export default function HomePage() {
                 onClick={() => handleWAClick('bulk', 'Bulk Order')}
                 className="btn-wa"
                 style={{ width: '100%', borderRadius: 12, background: 'var(--whatsapp)' }}
-                aria-label="Enquire about bulk mango orders"
+                aria-label={`${t.enquire_wa} - ${t.box3_name}`}
               >
                 <IconWA />{t.enquire_wa}
               </a>
@@ -449,21 +532,12 @@ export default function HomePage() {
         <div className="max-w-3xl mx-auto" data-animate>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 16 }}>
             <div style={{ fontSize: 56, animation: 'float 3s ease-in-out infinite' }}>🏆</div>
-            <div className="gi-badge" style={{ fontSize: 11 }}>December 2024 — Government of India</div>
-            <h2 className="section-title">Pune&apos;s Only GI Tagged Junnar Hapus</h2>
+            <div className="gi-badge font-deva" style={{ fontSize: 11 }}>{ui.giBadge}</div>
+            <h2 className="section-title font-deva">{ui.giTitle}</h2>
             <div className="divider" />
-            <p style={{ maxWidth: 600, color: 'var(--earth)', lineHeight: 1.8, fontSize: 16 }}>
-              In December 2024, the Government of India granted the prestigious <strong>Geographical Indication (GI) tag</strong> to <strong>Shivneri Hapus</strong> from Junnar — the birthplace of Chhatrapati Shivaji Maharaj.
-              This makes Junnar Hapus <strong>legally certified</strong> and one of Maharashtra&apos;s most exclusive mango varieties.
-              Ghogare Farms grows these GI certified mangoes and delivers them <strong>directly to Pune</strong>.
-            </p>
+            <p className="font-deva" style={{ maxWidth: 600, color: 'var(--earth)', lineHeight: 1.8, fontSize: 16 }}>{ui.giDesc}</p>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginTop: 8 }}>
-              {[
-                '🇮🇳 Govt. of India Certified',
-                '📍 Junnar, Pune District',
-                '🌿 No Chemicals Ever',
-                '🚫 No Middlemen',
-              ].map(item => (
+              {ui.giPills.map(item => (
                 <span key={item} style={{ background: '#fff', border: '1.5px solid rgba(45,80,22,0.2)', borderRadius: 9999, padding: '6px 14px', fontSize: 13, fontWeight: 600, color: 'var(--forest)' }}>
                   {item}
                 </span>
@@ -548,7 +622,13 @@ export default function HomePage() {
                 href={WA[area.wa as keyof typeof WA](SITE.whatsapp)}
                 onClick={() => handleWAClick(area.wa as keyof typeof WA, `Area: ${area.name}`)}
                 className="area-pill font-deva"
-                aria-label={`Order Hapus mangoes in ${area.name}, Pune`}
+                aria-label={
+                  lang === 'en'
+                    ? `Order Hapus mangoes in ${area.name}, Pune`
+                    : lang === 'hi'
+                      ? `पुणे के ${area.name} में हापूस आम ऑर्डर करें`
+                      : `पुण्यातील ${area.name} येथे हापूस आंबे ऑर्डर करा`
+                }
               >
                 📍 {area.name}
               </a>
@@ -559,7 +639,7 @@ export default function HomePage() {
             style={{ marginTop: 24, textAlign: 'center', fontSize: 12, color: '#A08060', maxWidth: 640, margin: '24px auto 0' }}
             className="font-deva"
           >
-            Delivering GI Tagged Shivneri Hapus Alphonso mangoes to Baner, Wakad, Hinjewadi, Kothrud, Viman Nagar, Koregaon Park, Aundh, Pimple Saudagar, Hadapsar, Magarpatta, Bavdhan, Pashan and all of Pune, Maharashtra.
+            {ui.areasSeo}
           </p>
         </div>
       </section>
@@ -609,7 +689,7 @@ export default function HomePage() {
               <h3 className="font-display font-deva" style={{ fontSize: 22, fontWeight: 800 }}>{t.group_title}</h3>
               <p className="font-deva" style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)', lineHeight: 1.6 }}>{t.group_sub}</p>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                {['📦 Stock alerts', '💰 Early-bird prices', '🏡 Harvest updates'].map(tag => (
+                {ui.waGroupTags.map(tag => (
                   <span key={tag} style={{ background: 'rgba(255,255,255,0.15)', borderRadius: 20, padding: '4px 10px', fontSize: 12 }}>{tag}</span>
                 ))}
               </div>
@@ -669,10 +749,10 @@ export default function HomePage() {
       >
         <span style={{ fontSize: 52, display: 'block', marginBottom: 16, animation: 'float 3s ease-in-out infinite' }}>🥭</span>
         <h2 className="font-display" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: 900, color: '#fff', marginBottom: 12 }}>
-          Season is Live. Stock is Limited.
+          {ui.finalTitle}
         </h2>
         <p className="font-deva" style={{ color: 'rgba(255,255,255,0.75)', fontSize: 15, marginBottom: 32 }}>
-          Shivneri Hapus sells out fast every year. Don&apos;t miss the freshest Pune-delivered mangoes.
+          {ui.finalSub}
         </p>
         <a
           href={waLink('generic')}
@@ -694,19 +774,19 @@ export default function HomePage() {
           <p className="font-deva" style={{ fontSize: 13, marginTop: 4, color: 'var(--saffron)' }}>{t.footer_tagline}</p>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6, fontSize: 13 }}>
-          <p>📍 Junnar Taluka, Pune District, Maharashtra</p>
+          <p>{ui.footerAddress}</p>
           <p>🌐 ghogarefarms.in</p>
           <a href={`tel:${SITE.phone}`} style={{ color: 'inherit' }}>📞 {SITE.phone}</a>
-          <a href={waLink('generic')} style={{ color: 'var(--whatsapp)', fontWeight: 700 }}>💬 WhatsApp Us</a>
+          <a href={waLink('generic')} style={{ color: 'var(--whatsapp)', fontWeight: 700 }}>{ui.footerWhatsapp}</a>
         </div>
         <div style={{ marginTop: 20, display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap', fontSize: 12 }}>
-          <span>Shivneri Hapus Mangoes Pune</span>
+          <span>{ui.footerSeo[0]}</span>
           <span>·</span>
-          <span>Junnar GI Tagged Alphonso</span>
+          <span>{ui.footerSeo[1]}</span>
           <span>·</span>
-          <span>Carbide Free Mango Delivery</span>
+          <span>{ui.footerSeo[2]}</span>
           <span>·</span>
-          <span>Baner · Wakad · Hinjewadi</span>
+          <span>{ui.footerSeo[3]}</span>
         </div>
         <p style={{ marginTop: 20, fontSize: 11, color: 'rgba(255,255,255,0.35)' }}>
           © {new Date().getFullYear()} Ghogare Farms. All rights reserved.
