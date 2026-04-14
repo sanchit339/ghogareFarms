@@ -36,14 +36,32 @@ const puneareas = [
   { name: 'Bopodi',          wa: 'generic' },
 ]
 
-const faqs = [
-  { q: 'What is Shivneri Hapus mango?', a: 'Shivneri Hapus is a GI tagged Alphonso mango grown exclusively in Junnar taluka, Pune district — the birthplace of Chhatrapati Shivaji Maharaj. It received its GI certification from the Government of India in December 2024. Known for its unique floral aroma, saffron-yellow color, and natural sweetness.' },
-  { q: 'Do you deliver to Baner, Wakad, and Hinjewadi?', a: 'Yes! We deliver to all Pune areas including Baner, Wakad, Hinjewadi, Kothrud, Viman Nagar, Koregaon Park, Aundh, Pimple Saudagar, Hadapsar, Magarpatta and everywhere else in Pune. Delivery takes 2–3 working days.' },
-  { q: 'Are your mangoes carbide-free?', a: '100% yes. We ripen our mangoes the traditional way — in hay stacks. Absolutely no calcium carbide or artificial ripening agents. Safe for children, elderly, and pregnant women.' },
-  { q: 'How do I place an order?', a: 'Tap any "Order on WhatsApp" button. Tell us your Pune locality, box size (1 or 2 dozen), and quantity. We confirm within minutes. Pay via UPI, WhatsApp Pay, or Cash on Delivery.' },
-  { q: 'Do you offer bulk or corporate gifting orders?', a: 'Yes! We handle bulk orders for IT companies, housing societies, weddings, and festive gifting. Custom branded boxes available. Contact us on WhatsApp for bulk pricing.' },
-  { q: 'When is the Shivneri Hapus season?', a: 'Shivneri Hapus from Junnar typically comes after the Konkan season — usually May to July. This is actually a huge advantage: when Ratnagiri/Devgad stock runs out, you can still get fresh Junnar Hapus. Join our WhatsApp group to get instant stock alerts.' },
-]
+const faqsByLang: Record<Lang, { q: string; a: string }[]> = {
+  en: [
+    { q: 'What is Shivneri Hapus mango?', a: 'Shivneri Hapus is a GI tagged Alphonso mango grown exclusively in Junnar taluka, Pune district — the birthplace of Chhatrapati Shivaji Maharaj. It received its GI certification from the Government of India in December 2024. Known for its unique floral aroma, saffron-yellow color, and natural sweetness.' },
+    { q: 'Do you deliver to Baner, Wakad, and Hinjewadi?', a: 'Yes! We deliver to all Pune areas including Baner, Wakad, Hinjewadi, Kothrud, Viman Nagar, Koregaon Park, Aundh, Pimple Saudagar, Hadapsar, Magarpatta and everywhere else in Pune. Delivery takes 2–3 working days.' },
+    { q: 'Are your mangoes carbide-free?', a: '100% yes. We ripen our mangoes the traditional way — in hay stacks. Absolutely no calcium carbide or artificial ripening agents. Safe for children, elderly, and pregnant women.' },
+    { q: 'How do I place an order?', a: 'Tap any "Order on WhatsApp" button. Tell us your Pune locality, box size (1 or 2 dozen), and quantity. We confirm within minutes. Pay via UPI, WhatsApp Pay, or Cash on Delivery.' },
+    { q: 'Do you offer bulk or corporate gifting orders?', a: 'Yes! We handle bulk orders for IT companies, housing societies, weddings, and festive gifting. Custom branded boxes available. Contact us on WhatsApp for bulk pricing.' },
+    { q: 'When is the Shivneri Hapus season?', a: 'Shivneri Hapus from Junnar typically comes after the Konkan season — usually May to July. This is actually a huge advantage: when Ratnagiri/Devgad stock runs out, you can still get fresh Junnar Hapus. Join our WhatsApp group to get instant stock alerts.' },
+  ],
+  hi: [
+    { q: 'शिवनेरी हापूस आम क्या है?', a: 'शिवनेरी हापूस एक GI टैग वाला अल्फांसो आम है, जो सिर्फ पुणे जिले के जुन्नर तालुका में उगता है। यह क्षेत्र छत्रपति शिवाजी महाराज की जन्मभूमि है। इसे दिसंबर 2024 में भारत सरकार से GI प्रमाणन मिला। इसकी खास पहचान है सुगंध, केसरिया रंग और प्राकृतिक मिठास।' },
+    { q: 'क्या आप बाणेर, वाकड और हिंजेवाड़ी में डिलीवरी करते हैं?', a: 'हाँ। हम बाणेर, वाकड, हिंजेवाड़ी, कोथरूड, विमान नगर, कोरेगांव पार्क, औंध, पिंपले सौदागर, हडपसर, मगरपट्टा सहित पूरे पुणे में डिलीवरी करते हैं। डिलीवरी आमतौर पर 2–3 कार्यदिवस में हो जाती है।' },
+    { q: 'क्या आपके आम कार्बाइड मुक्त हैं?', a: '100% हाँ। हम आमों को पारंपरिक तरीके से पुआल में पकाते हैं। कैल्शियम कार्बाइड या कृत्रिम पकाने वाले किसी भी रसायन का उपयोग नहीं करते। बच्चों, बुजुर्गों और गर्भवती महिलाओं के लिए सुरक्षित।' },
+    { q: 'ऑर्डर कैसे करें?', a: 'किसी भी "WhatsApp पर ऑर्डर करें" बटन पर टैप करें। अपनी पुणे लोकेलिटी, बॉक्स साइज (1 या 2 दर्जन) और मात्रा बताएं। हम मिनटों में कन्फर्म करते हैं। भुगतान UPI, WhatsApp Pay या Cash on Delivery से कर सकते हैं।' },
+    { q: 'क्या आप बल्क या कॉर्पोरेट गिफ्टिंग ऑर्डर लेते हैं?', a: 'हाँ। हम IT कंपनियों, हाउसिंग सोसायटी, शादी और फेस्टिव गिफ्टिंग के लिए बल्क ऑर्डर लेते हैं। कस्टम ब्रांडेड बॉक्स भी उपलब्ध हैं। बल्क प्राइसिंग के लिए WhatsApp पर संपर्क करें।' },
+    { q: 'शिवनेरी हापूस का सीजन कब होता है?', a: 'जुन्नर का शिवनेरी हापूस आमतौर पर कोंकण सीजन के बाद आता है, यानी मई से जुलाई के बीच। यही इसकी बड़ी खासियत है: जब रत्नागिरी/देवगड स्टॉक खत्म हो जाता है, तब भी ताज़ा जुन्नर हापूस मिल सकता है। स्टॉक अलर्ट के लिए हमारा WhatsApp ग्रुप जॉइन करें।' },
+  ],
+  mr: [
+    { q: 'शिवनेरी हापूस आंबा म्हणजे काय?', a: 'शिवनेरी हापूस हा GI मानांकन मिळालेला अल्फोन्सो आंबा आहे, जो फक्त पुणे जिल्ह्यातील जुन्नर तालुक्यात पिकतो. ही छत्रपती शिवाजी महाराजांची जन्मभूमी आहे. डिसेंबर 2024 मध्ये भारत सरकारकडून GI प्रमाणन मिळाले. याची खासियत म्हणजे सुगंध, केशरी रंग आणि नैसर्गिक गोडवा.' },
+    { q: 'बाणेर, वाकड आणि हिंजेवाडी येथे डिलिव्हरी करता का?', a: 'होय. आम्ही बाणेर, वाकड, हिंजेवाडी, कोथरूड, विमान नगर, कोरेगाव पार्क, औंध, पिंपळे सौदागर, हडपसर, मगरपट्टा आणि संपूर्ण पुण्यात डिलिव्हरी करतो. डिलिव्हरी साधारण 2–3 कामकाजाच्या दिवसांत होते.' },
+    { q: 'तुमचे आंबे कार्बाइडमुक्त आहेत का?', a: '100% होय. आम्ही आंबे पारंपरिक पद्धतीने गवतामध्ये पिकवतो. कॅल्शियम कार्बाइड किंवा कृत्रिम रसायनांचा अजिबात वापर करत नाही. मुले, ज्येष्ठ आणि गर्भवती महिलांसाठी सुरक्षित.' },
+    { q: 'ऑर्डर कशी करायची?', a: 'कोणतेही "WhatsApp वर ऑर्डर करा" बटण दाबा. तुमचा पुणे परिसर, बॉक्स साइज (1 किंवा 2 डझन) आणि प्रमाण सांगा. आम्ही काही मिनिटांत कन्फर्म करतो. पेमेंट UPI, WhatsApp Pay किंवा Cash on Delivery ने करू शकता.' },
+    { q: 'बल्क किंवा कॉर्पोरेट गिफ्टिंग ऑर्डर घेता का?', a: 'होय. आम्ही IT कंपन्या, हाउसिंग सोसायटी, लग्न समारंभ आणि फेस्टिव गिफ्टिंगसाठी बल्क ऑर्डर घेतो. कस्टम ब्रँडेड बॉक्स उपलब्ध आहेत. बल्क प्राइससाठी WhatsApp वर संपर्क करा.' },
+    { q: 'शिवनेरी हापूसचा हंगाम कधी असतो?', a: 'जुन्नरचा शिवनेरी हापूस साधारण कोकण हंगामानंतर येतो, म्हणजे मे ते जुलै दरम्यान. हीच त्याची मोठी जमेची बाजू आहे: रत्नागिरी/देवगड स्टॉक संपल्यानंतरही ताजा जुन्नर हापूस मिळू शकतो. स्टॉक अपडेटसाठी आमच्या WhatsApp ग्रुपमध्ये सामील व्हा.' },
+  ],
+}
 
 // ──────────────────────────────────────────────────────────
 // COMPONENT
@@ -51,6 +69,7 @@ const faqs = [
 export default function HomePage() {
   const [lang, setLang] = useState<Lang>('en')
   const t = translations[lang]
+  const faqs = faqsByLang[lang]
 
   // Scroll animation
   useEffect(() => {
