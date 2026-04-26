@@ -29,15 +29,10 @@ const mukta = Mukta({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
 
-  // Primary title — optimised for "Alphonso mango Pune" + local areas
-  title: {
-    default: 'Buy Shivneri Hapus Mangoes in Pune | Ghogare Farms | Baner, Wakad, Hinjewadi',
-    template: '%s | Ghogare Farms — Shivneri Hapus Mangoes Pune',
-  },
+  title: 'Ghogare Farms - Premium Shivneri Alphonso Mangoes',
 
-  // Meta description — 155 chars, high intent keywords
   description:
-    'Buy GI Tagged Shivneri Hapus (Junnar Alphonso) mangoes online in Pune. Farm-direct, carbide-free, naturally ripened. Delivery in Baner, Wakad, Hinjewadi, Kothrud, Viman Nagar. Order on WhatsApp.',
+    'Order fresh Shivneri Alphonso mangoes directly from our farm in Ratnagiri. Pure, chemical-free, delivered to your door.',
 
   keywords: [
     // Product keywords
@@ -79,17 +74,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: SITE.url,
+    url: 'https://ghogarefarms.in',
     siteName: 'Ghogare Farms',
-    title: 'Shivneri Hapus Mangoes — GI Tagged, Junnar Farm. Delivered to Pune.',
+    title: 'Ghogare Farms - Premium Shivneri Alphonso Mangoes',
     description:
-      'Farm-direct Shivneri Hapus (Alphonso) mangoes from Junnar. No carbide, no middlemen. Delivered to Baner, Wakad, Hinjewadi and all of Pune within 2-3 days. Order on WhatsApp now.',
+      'Order fresh Shivneri Alphonso mangoes directly from our farm in Ratnagiri. Pure, chemical-free, delivered to your door.',
     images: [
       {
-        url: '/og-image.jpg', // Replace with your actual farm photo
+        url: 'https://ghogarefarms.in/og-image.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Shivneri Hapus Alphonso Mangoes from Ghogare Farms, Junnar — Delivered to Pune',
+        alt: 'Ghogare Farms Alphonso Mangoes',
       },
     ],
   },
@@ -97,9 +92,9 @@ export const metadata: Metadata = {
   // Twitter / X Card
   twitter: {
     card: 'summary_large_image',
-    title: 'Shivneri Hapus Mangoes — GI Tagged. Farm-Fresh. Delivered to Pune.',
-    description: 'Buy GI Tagged Junnar Alphonso mangoes online in Pune. Carbide-free, naturally ripened, delivered in 2-3 days.',
-    images: ['/og-image.jpg'],
+    title: 'Ghogare Farms - Premium Shivneri Alphonso Mangoes',
+    description: 'Order fresh Shivneri Alphonso mangoes directly from our farm.',
+    images: ['https://ghogarefarms.in/og-image.jpeg'],
   },
 
   // Robots
@@ -181,7 +176,7 @@ const localBusinessSchema = {
     closes: '21:00',
   },
   sameAs: [SITE.instagram],
-  image: `${SITE.url}/og-image.jpg`,
+  image: `${SITE.url}/og-image.jpeg`,
   priceRange: '₹₹',
   currenciesAccepted: 'INR',
   paymentAccepted: 'Cash, UPI, WhatsApp Pay',
@@ -201,7 +196,7 @@ const productSchema = {
     'GI Tagged Shivneri Hapus (Junnar Alphonso) mangoes. Naturally ripened in hay, carbide-free, no middlemen. Direct from Ghogare Farms, Junnar to your doorstep in Pune.',
   brand: { '@type': 'Brand', name: 'Ghogare Farms' },
   category: 'Fresh Fruits > Mangoes',
-  image: `${SITE.url}/og-image.jpg`,
+  image: `${SITE.url}/og-image.jpeg`,
   offers: [
     {
       '@type': 'Offer',
