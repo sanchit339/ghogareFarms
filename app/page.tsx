@@ -238,14 +238,14 @@ export default function HomePage() {
       <header
         className="relative flex flex-col justify-end"
         style={{
-          minHeight: '92vh',
+          minHeight: 'calc(100dvh - 84px)',
           background: `
             linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%),
             url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFoLxysWDktHUiRoVeAnWAiaIJurXGoEwKkgyhYx6Wb1dUddlVdri2JJjLdopHJkPp4mcUzEnmIBEQfsg8vwdwZu56DYQu9cMhd2SsdRNxTvGoopuYiXJiYkZ1mys4tdcsjxXdr3dHw7zX_f3r8y0SQYLnpCzzqD8rIdAkBI2rO46swBZRf8Mek5SkW3gAT6mZmQ0efsF1MXyz24HxsWkZJMnrvZHhyTBW-__GWR2aIjwmPJ84er5qV0TV_nk0WDCfgXHliqii_OE') center/cover no-repeat
           `,
         }}
       >
-        <div className="max-w-xl px-6 pb-10 space-y-5">
+        <div className="max-w-xl px-6 space-y-4" style={{ paddingBottom: 'calc(110px + env(safe-area-inset-bottom, 0px))' }}>
           {/* GI Badge */}
           <div className="gi-badge animate-fade-in" style={{ animationDelay: '0.1s' }}>
             <IconCheck />{t.gi_badge}
@@ -267,8 +267,20 @@ export default function HomePage() {
             {t.hero_sub}
           </p>
 
+          {/* Social proof mini */}
+          <div className="flex items-center gap-3 animate-fade-up" style={{ animationDelay: '0.5s', opacity: 0 }}>
+            <div className="flex -space-x-1">
+              {['🙋', '🙋‍♀️', '🙋‍♂️', '🙋'].map((e, i) => (
+                <span key={i} style={{ fontSize: 20, filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))' }}>{e}</span>
+              ))}
+            </div>
+            <p style={{ color: '#FFE4B0', fontSize: 13, fontWeight: 600 }}>
+              {ui.heroSocialProof}
+            </p>
+          </div>
+
           {/* CTAs */}
-          <div className="flex flex-col gap-3 pt-2 animate-fade-up" style={{ animationDelay: '0.5s', opacity: 0 }}>
+          <div className="flex flex-col gap-3 pt-1 animate-fade-up" style={{ animationDelay: '0.65s', opacity: 0 }}>
             <a
               href={waLink('generic')}
               onClick={() => handleWAClick('generic', 'Hero CTA')}
@@ -286,18 +298,6 @@ export default function HomePage() {
             >
               🔔 {t.hero_group}
             </a>
-          </div>
-
-          {/* Social proof mini */}
-          <div className="flex items-center gap-3 animate-fade-up" style={{ animationDelay: '0.65s', opacity: 0 }}>
-            <div className="flex -space-x-1">
-              {['🙋', '🙋‍♀️', '🙋‍♂️', '🙋'].map((e, i) => (
-                <span key={i} style={{ fontSize: 20, filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))' }}>{e}</span>
-              ))}
-            </div>
-            <p style={{ color: '#FFE4B0', fontSize: 13, fontWeight: 600 }}>
-              {ui.heroSocialProof}
-            </p>
           </div>
         </div>
       </header>
