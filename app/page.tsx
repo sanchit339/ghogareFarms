@@ -89,7 +89,7 @@ const pageTextByLang: Record<Lang, {
     reviewsMeta: '⭐⭐⭐⭐⭐ 4.9/5 from 127+ orders',
     box1Features: ['GI Tagged Shivneri Hapus', 'Naturally ripened in hay', 'No carbide, no chemicals', 'Free delivery in Pune'],
     box2Features: ['Best value for families', 'Great for gifting & sharing', 'Same day WhatsApp confirmation', 'Pay after delivery (COD)'],
-    box2Save: 'SAVE ₹XX',
+    box2Save: 'SAVE ₹500',
     bulkTags: ['🏢 IT Offices', '🏠 Societies', '💍 Weddings', '🎁 Gifts'],
     giBadge: 'December 2024 — Government of India',
     giTitle: "Pune's Only GI Tagged Junnar Hapus",
@@ -109,7 +109,7 @@ const pageTextByLang: Record<Lang, {
     reviewsMeta: '⭐⭐⭐⭐⭐ 127+ ऑर्डर से 4.9/5',
     box1Features: ['GI टैग शिवनेरी हापूस', 'पुआल में प्राकृतिक पकाई', 'बिना कार्बाइड, बिना केमिकल', 'पुणे में फ्री डिलीवरी'],
     box2Features: ['परिवार के लिए बेहतरीन वैल्यू', 'गिफ्टिंग और शेयरिंग के लिए बढ़िया', 'उसी दिन WhatsApp कन्फर्मेशन', 'डिलीवरी के बाद पेमेंट (COD)'],
-    box2Save: '₹XX बचत',
+    box2Save: '₹500 बचत',
     bulkTags: ['🏢 IT ऑफिस', '🏠 सोसायटी', '💍 शादियां', '🎁 गिफ्ट्स'],
     giBadge: 'दिसंबर 2024 — भारत सरकार',
     giTitle: 'पुणे का एकमात्र GI टैग जुन्नर हापूस',
@@ -129,7 +129,7 @@ const pageTextByLang: Record<Lang, {
     reviewsMeta: '⭐⭐⭐⭐⭐ 127+ ऑर्डरमधून 4.9/5',
     box1Features: ['GI मानांकन शिवनेरी हापूस', 'गवतात नैसर्गिक पिकवलेले', 'कार्बाइड नाही, केमिकल नाही', 'पुण्यात मोफत डिलिव्हरी'],
     box2Features: ['कुटुंबासाठी सर्वोत्तम मूल्य', 'गिफ्टिंग आणि शेअरिंगसाठी उत्तम', 'त्याच दिवशी WhatsApp पुष्टी', 'डिलिव्हरीनंतर पेमेंट (COD)'],
-    box2Save: '₹XX बचत',
+    box2Save: '₹500 बचत',
     bulkTags: ['🏢 IT ऑफिसेस', '🏠 सोसायट्या', '💍 लग्नसमारंभ', '🎁 भेटवस्तू'],
     giBadge: 'डिसेंबर 2024 — भारत सरकार',
     giTitle: 'पुण्यातील एकमेव GI मानांकन जुन्नर हापूस',
@@ -396,7 +396,10 @@ export default function HomePage() {
                   <h3 className="font-display font-deva" style={{ fontSize: 20, fontWeight: 800, color: 'var(--earth)' }}>{t.box1_name}</h3>
                   <p className="font-deva" style={{ fontSize: 13, color: '#8B7355', marginTop: 4 }}>{t.box1_weight}</p>
                 </div>
-                <div>
+                <div style={{ textAlign: 'right' }}>
+                  <p className="font-deva" style={{ fontSize: 12, color: '#8B7355', textDecoration: 'line-through', marginBottom: 2 }}>
+                    {(t as any).box1_old_price}
+                  </p>
                   <p className="font-display" style={{ fontSize: 26, fontWeight: 900, color: 'var(--amber)' }}>{t.box1_price}</p>
                 </div>
               </div>
@@ -432,7 +435,10 @@ export default function HomePage() {
                   <h3 className="font-display font-deva" style={{ fontSize: 20, fontWeight: 800, color: 'var(--earth)' }}>{t.box2_name}</h3>
                   <p className="font-deva" style={{ fontSize: 13, color: '#8B7355', marginTop: 4 }}>{t.box2_weight}</p>
                 </div>
-                <div>
+                <div style={{ textAlign: 'right' }}>
+                  <p className="font-deva" style={{ fontSize: 12, color: '#8B7355', textDecoration: 'line-through', marginBottom: 2 }}>
+                    {(t as any).box2_old_price}
+                  </p>
                   <p className="font-display" style={{ fontSize: 26, fontWeight: 900, color: 'var(--amber)' }}>{t.box2_price}</p>
                   <p style={{ fontSize: 10, color: 'var(--forest)', fontWeight: 700, textAlign: 'right' }}>{ui.box2Save}</p>
                 </div>
