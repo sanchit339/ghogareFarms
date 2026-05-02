@@ -7,8 +7,8 @@ export const SITE = {
   name: 'Ghogare Farms',
   tagline: 'Shivneri Hapus | Junnar GI Tagged Alphonso Mangoes',
   url: 'https://ghogarefarms.in',
-  phone: '+919876543210',           // ← REPLACE with real number
-  whatsapp: '919876543210',         // ← REPLACE (no + sign)
+  phone: '+919552911441',
+  whatsapp: '919552911441',
   waGroupLink: 'https://chat.whatsapp.com/REPLACE_WITH_YOUR_GROUP_LINK', // ← REPLACE
   instagram: 'https://www.instagram.com/ghogarefarms', // ← REPLACE with real handle
   instagramHandle: '@ghogarefarms',  // ← REPLACE
