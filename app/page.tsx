@@ -186,10 +186,12 @@ const pageTextByLang: Record<Lang, {
 // ──────────────────────────────────────────────────────────
 export default function HomePage() {
   const [lang, setLang] = useState<Lang>('en')
+  const [dozen1Slide, setDozen1Slide] = useState(0)
   const t = translations[lang]
   const faqs = faqsByLang[lang]
   const ui = pageTextByLang[lang]
   const pricing = pricingByLang[lang]
+  const dozen1Images = ['/1_dozen_main.jpeg', '/1_dozen_2nd.jpeg', '/1_dozen_3rd.jpeg']
 
   // Scroll animation
   useEffect(() => {
@@ -214,6 +216,13 @@ export default function HomePage() {
   }
 
   const waLink = (type: keyof typeof WA) => WA[type](SITE.whatsapp)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setDozen1Slide((prev) => (prev + 1) % dozen1Images.length)
+    }, 2600)
+    return () => clearInterval(id)
+  }, [dozen1Images.length])
 
   return (
     <main
@@ -427,56 +436,48 @@ export default function HomePage() {
               <div style={{
                 position: 'relative',
                 width: '100%',
-                height: 190,
+                height: 240,
                 borderRadius: 14,
                 overflow: 'hidden',
                 marginBottom: 8,
                 boxShadow: '0 8px 24px rgba(59,42,0,0.18)',
                 border: '1px solid rgba(244,171,37,0.22)',
               }}>
-                <Image
-                  src="/1_dozen_main.jpeg"
-                  alt="Shivneri Hapus 1 dozen premium mangoes"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  sizes="(max-width: 430px) 100vw, 430px"
-                  priority={false}
-                />
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-                <div style={{
-                  position: 'relative',
-                  width: '100%',
-                  height: 96,
-                  borderRadius: 12,
-                  overflow: 'hidden',
-                  boxShadow: '0 6px 18px rgba(59,42,0,0.14)',
-                  border: '1px solid rgba(244,171,37,0.2)',
-                }}>
-                  <Image
-                    src="/1_dozen_2nd.jpeg"
-                    alt="Shivneri Hapus mangoes in orchard bowl"
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    sizes="(max-width: 430px) 50vw, 215px"
-                  />
+                <div
+                  style={{
+                    display: 'flex',
+                    width: `${dozen1Images.length * 100}%`,
+                    height: '100%',
+                    transform: `translateX(-${(100 / dozen1Images.length) * dozen1Slide}%)`,
+                    transition: 'transform 650ms ease-in-out',
+                  }}
+                >
+                  {dozen1Images.map((src, index) => (
+                    <div key={src} style={{ position: 'relative', width: `${100 / dozen1Images.length}%`, height: '100%' }}>
+                      <Image
+                        src={src}
+                        alt={`Shivneri Hapus 1 dozen image ${index + 1}`}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        sizes="(max-width: 430px) 100vw, 430px"
+                        priority={index === 0}
+                      />
+                    </div>
+                  ))}
                 </div>
-                <div style={{
-                  position: 'relative',
-                  width: '100%',
-                  height: 96,
-                  borderRadius: 12,
-                  overflow: 'hidden',
-                  boxShadow: '0 6px 18px rgba(59,42,0,0.14)',
-                  border: '1px solid rgba(244,171,37,0.2)',
-                }}>
-                  <Image
-                    src="/1_dozen_3rd.jpeg"
-                    alt="Shivneri Hapus 1 dozen packed box"
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    sizes="(max-width: 430px) 50vw, 215px"
-                  />
+                <div style={{ position: 'absolute', left: 0, right: 0, bottom: 10, display: 'flex', justifyContent: 'center', gap: 6 }}>
+                  {dozen1Images.map((_, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        width: 7,
+                        height: 7,
+                        borderRadius: '50%',
+                        background: i === dozen1Slide ? '#F4AB25' : 'rgba(255,255,255,0.75)',
+                        boxShadow: i === dozen1Slide ? '0 0 0 2px rgba(59,42,0,0.25)' : 'none',
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
