@@ -187,11 +187,13 @@ const pageTextByLang: Record<Lang, {
 export default function HomePage() {
   const [lang, setLang] = useState<Lang>('en')
   const [dozen1Slide, setDozen1Slide] = useState(0)
+  const [dozen2Slide, setDozen2Slide] = useState(0)
   const t = translations[lang]
   const faqs = faqsByLang[lang]
   const ui = pageTextByLang[lang]
   const pricing = pricingByLang[lang]
   const dozen1Images = ['/1_dozen_main.jpeg', '/1_dozen_2nd.jpeg', '/1_dozen_3rd.jpeg']
+  const dozen2Images = ['/2_dozen_1st.jpeg', '/2_dozen_2nd.jpeg', '/2_dozen_3rd.jpeg']
 
   // Scroll animation
   useEffect(() => {
@@ -223,6 +225,13 @@ export default function HomePage() {
     }, 2600)
     return () => clearInterval(id)
   }, [dozen1Images.length])
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setDozen2Slide((prev) => (prev + 1) % dozen2Images.length)
+    }, 2800)
+    return () => clearInterval(id)
+  }, [dozen2Images.length])
 
   return (
     <main
@@ -525,11 +534,56 @@ export default function HomePage() {
 
           {/* Box 2 — 2 Dozen */}
           <div className="card relative" data-animate>
-            <div className="ribbon" style={{ background: 'var(--forest)', color: '#fff' }}>{t.box2_badge}</div>
-            <div style={{
-              height: 200, overflow: 'hidden',
-              background: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuAeB5vJsWiMu3BmgQQ3Alzio5aQb00VL4NBMZWoDbhuxgaAwXFdBbf1JzNXh8qMznzGWToTBbQd9kNnJ7DvzD_VfZSjpl2l0U0YvdYCQG4mHIXg_IaR9Cd-h7k3wZvkM2ibh5jmwfkjKT9x0Jl3gPYErYJVVhG-CZnogpSrau4DgbDmiNdyQNltaPZjhXlQMRyb9t233jVdrz5aNCboIL0oZ8xJM4AO6XvmzzJ7F1ubVmQq157u-oarL3JaMaHoJmKfxFl9gEgOjQg') center/cover no-repeat`,
-            }} />
+            <div className="ribbon" style={{ background: 'var(--forest)', color: '#fff', zIndex: 5, top: 10, right: -1 }}>{t.box2_badge}</div>
+            <div style={{ padding: 14, paddingTop: 28, paddingBottom: 0 }}>
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                height: 240,
+                borderRadius: 14,
+                overflow: 'hidden',
+                marginBottom: 8,
+                boxShadow: '0 8px 24px rgba(59,42,0,0.18)',
+                border: '1px solid rgba(244,171,37,0.22)',
+              }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    width: `${dozen2Images.length * 100}%`,
+                    height: '100%',
+                    transform: `translateX(-${(100 / dozen2Images.length) * dozen2Slide}%)`,
+                    transition: 'transform 650ms ease-in-out',
+                  }}
+                >
+                  {dozen2Images.map((src, index) => (
+                    <div key={src} style={{ position: 'relative', width: `${100 / dozen2Images.length}%`, height: '100%' }}>
+                      <Image
+                        src={src}
+                        alt={`Shivneri Hapus 2 dozen image ${index + 1}`}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        sizes="(max-width: 430px) 100vw, 430px"
+                        priority={false}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div style={{ position: 'absolute', left: 0, right: 0, bottom: 10, display: 'flex', justifyContent: 'center', gap: 6 }}>
+                  {dozen2Images.map((_, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        width: 7,
+                        height: 7,
+                        borderRadius: '50%',
+                        background: i === dozen2Slide ? '#F4AB25' : 'rgba(255,255,255,0.75)',
+                        boxShadow: i === dozen2Slide ? '0 0 0 2px rgba(59,42,0,0.25)' : 'none',
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
             <div style={{ padding: 24 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
                 <div>
