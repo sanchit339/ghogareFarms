@@ -422,9 +422,18 @@ export default function HomePage() {
 
           {/* Box 1 — 1 Dozen */}
           <div className="card relative" data-animate>
-            <div className="ribbon">{t.box1_badge}</div>
-            <div style={{ padding: 14, paddingBottom: 0 }}>
-              <div style={{ position: 'relative', width: '100%', height: 190, borderRadius: 14, overflow: 'hidden', marginBottom: 8 }}>
+            <div className="ribbon" style={{ zIndex: 5, top: 10, right: -1 }}>{t.box1_badge}</div>
+            <div style={{ padding: 14, paddingTop: 28, paddingBottom: 0 }}>
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                height: 190,
+                borderRadius: 14,
+                overflow: 'hidden',
+                marginBottom: 8,
+                boxShadow: '0 8px 24px rgba(59,42,0,0.18)',
+                border: '1px solid rgba(244,171,37,0.22)',
+              }}>
                 <Image
                   src="/1_dozen_main.jpeg"
                   alt="Shivneri Hapus 1 dozen premium mangoes"
@@ -435,7 +444,15 @@ export default function HomePage() {
                 />
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-                <div style={{ position: 'relative', width: '100%', height: 96, borderRadius: 12, overflow: 'hidden' }}>
+                <div style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: 96,
+                  borderRadius: 12,
+                  overflow: 'hidden',
+                  boxShadow: '0 6px 18px rgba(59,42,0,0.14)',
+                  border: '1px solid rgba(244,171,37,0.2)',
+                }}>
                   <Image
                     src="/1_dozen_2nd.jpeg"
                     alt="Shivneri Hapus mangoes in orchard bowl"
@@ -444,7 +461,15 @@ export default function HomePage() {
                     sizes="(max-width: 430px) 50vw, 215px"
                   />
                 </div>
-                <div style={{ position: 'relative', width: '100%', height: 96, borderRadius: 12, overflow: 'hidden' }}>
+                <div style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: 96,
+                  borderRadius: 12,
+                  overflow: 'hidden',
+                  boxShadow: '0 6px 18px rgba(59,42,0,0.14)',
+                  border: '1px solid rgba(244,171,37,0.2)',
+                }}>
                   <Image
                     src="/1_dozen_3rd.jpeg"
                     alt="Shivneri Hapus 1 dozen packed box"
