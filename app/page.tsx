@@ -266,28 +266,9 @@ export default function HomePage() {
       >
         {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div
-            style={{
-              position: 'relative',
-              width: 118,
-              height: 42,
-              borderRadius: 10,
-              overflow: 'hidden',
-              background: 'rgba(255,255,255,0.85)',
-              border: '1px solid rgba(5,94,84,0.14)',
-              boxShadow: '0 6px 18px rgba(59,42,0,0.12)',
-            }}
-          >
-            <Image
-              src="/ghogareFarmsLogo.jpeg"
-              alt="Ghogare Farms logo"
-              fill
-              style={{ objectFit: 'contain', objectPosition: 'center 84%' }}
-              sizes="118px"
-              priority
-            />
-          </div>
+          <span style={{ fontSize: 22 }}>🥭</span>
           <div>
+            <p style={{ fontSize: 13, fontWeight: 800, color: 'var(--earth)', lineHeight: 1, fontFamily: 'var(--font-playfair)' }}>Ghogare Farms</p>
             <p style={{ fontSize: 9, color: 'var(--amber)', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{ui.headerSub}</p>
           </div>
         </div>
@@ -958,27 +939,8 @@ export default function HomePage() {
       ══════════════════════════════════════════════════ */}
       <footer style={{ background: 'var(--bark)', color: 'rgba(255,255,255,0.75)', textAlign: 'center', padding: '3rem 1.5rem 7rem' }}>
         <div style={{ marginBottom: 16 }}>
-          <div
-            style={{
-              position: 'relative',
-              width: 210,
-              height: 84,
-              margin: '0 auto',
-              borderRadius: 14,
-              overflow: 'hidden',
-              background: '#ffffff',
-              border: '1px solid rgba(5,94,84,0.2)',
-              boxShadow: '0 12px 30px rgba(0,0,0,0.22)',
-            }}
-          >
-            <Image
-              src="/ghogareFarmsLogo.jpeg"
-              alt="Ghogare Farms logo"
-              fill
-              style={{ objectFit: 'contain', objectPosition: 'center 84%' }}
-              sizes="210px"
-            />
-          </div>
+          <span style={{ fontSize: 32 }}>🥭</span>
+          <p className="font-display" style={{ fontSize: 20, fontWeight: 800, color: '#fff', marginTop: 8 }}>Ghogare Farms</p>
           <p className="font-deva" style={{ fontSize: 13, marginTop: 4, color: 'var(--saffron)' }}>{t.footer_tagline}</p>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6, fontSize: 13 }}>
@@ -1014,30 +976,10 @@ export default function HomePage() {
         boxShadow: '0 -4px 24px rgba(92,61,30,0.12)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, overflow: 'hidden' }}>
-          <div
-            style={{
-              position: 'relative',
-              width: 34,
-              height: 34,
-              borderRadius: 8,
-              overflow: 'hidden',
-              background: '#fff',
-              border: '1px solid rgba(5,94,84,0.16)',
-              boxShadow: '0 4px 12px rgba(59,42,0,0.14)',
-              flexShrink: 0,
-            }}
-          >
-            <Image
-              src="/ghogareFarmsLogo.jpeg"
-              alt="Ghogare Farms logo icon"
-              fill
-              style={{ objectFit: 'cover', objectPosition: 'center 36%' }}
-              sizes="34px"
-            />
-          </div>
+          <span style={{ fontSize: 26, flexShrink: 0 }}>🥭</span>
           <div>
-            <p className="font-deva" style={{ fontSize: 12, fontWeight: 800, color: 'var(--earth)', lineHeight: 1 }}>Ghogare Farms</p>
-            <p className="font-deva" style={{ fontSize: 11, color: '#6B5240', marginTop: 2 }}>{t.sticky_sub}</p>
+            <p className="font-deva" style={{ fontSize: 11, fontWeight: 800, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1 }}>Ghogare Farms</p>
+            <p className="font-deva" style={{ fontSize: 12, color: 'var(--earth)', marginTop: 2 }}>{t.sticky_sub}</p>
           </div>
         </div>
         <a
