@@ -9,7 +9,7 @@ export const SITE = {
   url: 'https://ghogarefarms.in',
   phone: '+919552911441',
   whatsapp: '919552911441',
-  waGroupLink: 'https://chat.whatsapp.com/REPLACE_WITH_YOUR_GROUP_LINK', // ← REPLACE
+  waGroupLink: 'https://chat.whatsapp.com/HETkH4XViWC2u3dOzIjEEL?mode=gi_t',
   instagram: 'https://www.instagram.com/ghogarefarms', // ← REPLACE with real handle
   instagramHandle: '@ghogarefarms',  // ← REPLACE
   address: 'Junnar Taluka, Pune District, Maharashtra 410502',

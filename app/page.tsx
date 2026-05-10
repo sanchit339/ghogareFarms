@@ -63,13 +63,51 @@ const faqsByLang: Record<Lang, { q: string; a: string }[]> = {
   ],
 }
 
+const pricingByLang: Record<
+  Lang,
+  {
+    dozen1: { label: string; weight: string; price: string; oldPrice: string }[]
+    dozen2: { label: string; weight: string; price: string; oldPrice: string }[]
+  }
+> = {
+  en: {
+    dozen1: [
+      { label: 'Large Size', weight: '3.3 kg to 3.6 kg', price: '₹1,900', oldPrice: '₹2,200' },
+      { label: 'Medium Size', weight: '2.7 kg to 3.0 kg', price: '₹1,700', oldPrice: '₹2,000' },
+    ],
+    dozen2: [
+      { label: 'Large Size', weight: '6.6 kg to 7.2 kg', price: '₹3,800', oldPrice: '₹4,400' },
+      { label: 'Medium Size', weight: '5.4 kg to 6.0 kg', price: '₹3,400', oldPrice: '₹4,000' },
+    ],
+  },
+  hi: {
+    dozen1: [
+      { label: 'लार्ज साइज', weight: '3.3 kg से 3.6 kg', price: '₹1,900', oldPrice: '₹2,200' },
+      { label: 'मीडियम साइज', weight: '2.7 kg से 3.0 kg', price: '₹1,700', oldPrice: '₹2,000' },
+    ],
+    dozen2: [
+      { label: 'लार्ज साइज', weight: '6.6 kg से 7.2 kg', price: '₹3,800', oldPrice: '₹4,400' },
+      { label: 'मीडियम साइज', weight: '5.4 kg से 6.0 kg', price: '₹3,400', oldPrice: '₹4,000' },
+    ],
+  },
+  mr: {
+    dozen1: [
+      { label: 'लार्ज साइज', weight: '3.3 kg ते 3.6 kg', price: '₹1,900', oldPrice: '₹2,200' },
+      { label: 'मिडियम साइज', weight: '2.7 kg ते 3.0 kg', price: '₹1,700', oldPrice: '₹2,000' },
+    ],
+    dozen2: [
+      { label: 'लार्ज साइज', weight: '6.6 kg ते 7.2 kg', price: '₹3,800', oldPrice: '₹4,400' },
+      { label: 'मिडियम साइज', weight: '5.4 kg ते 6.0 kg', price: '₹3,400', oldPrice: '₹4,000' },
+    ],
+  },
+}
+
 const pageTextByLang: Record<Lang, {
   headerSub: string
   heroSocialProof: string
   reviewsMeta: string
   box1Features: string[]
   box2Features: string[]
-  box2Save: string
   bulkTags: string[]
   giBadge: string
   giTitle: string
@@ -89,7 +127,6 @@ const pageTextByLang: Record<Lang, {
     reviewsMeta: '⭐⭐⭐⭐⭐ 4.9/5 from 127+ orders',
     box1Features: ['GI Tagged Shivneri Hapus', 'Naturally ripened in hay', 'No carbide, no chemicals', 'Free delivery in Pune'],
     box2Features: ['Best value for families', 'Great for gifting & sharing', 'Same day WhatsApp confirmation', 'Pay after delivery (COD)'],
-    box2Save: 'SAVE ₹500',
     bulkTags: ['🏢 IT Offices', '🏠 Societies', '💍 Weddings', '🎁 Gifts'],
     giBadge: 'December 2024 — Government of India',
     giTitle: "Pune's Only GI Tagged Junnar Hapus",
@@ -109,7 +146,6 @@ const pageTextByLang: Record<Lang, {
     reviewsMeta: '⭐⭐⭐⭐⭐ 127+ ऑर्डर से 4.9/5',
     box1Features: ['GI टैग शिवनेरी हापूस', 'पुआल में प्राकृतिक पकाई', 'बिना कार्बाइड, बिना केमिकल', 'पुणे में फ्री डिलीवरी'],
     box2Features: ['परिवार के लिए बेहतरीन वैल्यू', 'गिफ्टिंग और शेयरिंग के लिए बढ़िया', 'उसी दिन WhatsApp कन्फर्मेशन', 'डिलीवरी के बाद पेमेंट (COD)'],
-    box2Save: '₹500 बचत',
     bulkTags: ['🏢 IT ऑफिस', '🏠 सोसायटी', '💍 शादियां', '🎁 गिफ्ट्स'],
     giBadge: 'दिसंबर 2024 — भारत सरकार',
     giTitle: 'पुणे का एकमात्र GI टैग जुन्नर हापूस',
@@ -129,7 +165,6 @@ const pageTextByLang: Record<Lang, {
     reviewsMeta: '⭐⭐⭐⭐⭐ 127+ ऑर्डरमधून 4.9/5',
     box1Features: ['GI मानांकन शिवनेरी हापूस', 'गवतात नैसर्गिक पिकवलेले', 'कार्बाइड नाही, केमिकल नाही', 'पुण्यात मोफत डिलिव्हरी'],
     box2Features: ['कुटुंबासाठी सर्वोत्तम मूल्य', 'गिफ्टिंग आणि शेअरिंगसाठी उत्तम', 'त्याच दिवशी WhatsApp पुष्टी', 'डिलिव्हरीनंतर पेमेंट (COD)'],
-    box2Save: '₹500 बचत',
     bulkTags: ['🏢 IT ऑफिसेस', '🏠 सोसायट्या', '💍 लग्नसमारंभ', '🎁 भेटवस्तू'],
     giBadge: 'डिसेंबर 2024 — भारत सरकार',
     giTitle: 'पुण्यातील एकमेव GI मानांकन जुन्नर हापूस',
@@ -153,6 +188,7 @@ export default function HomePage() {
   const t = translations[lang]
   const faqs = faqsByLang[lang]
   const ui = pageTextByLang[lang]
+  const pricing = pricingByLang[lang]
 
   // Scroll animation
   useEffect(() => {
@@ -394,14 +430,24 @@ export default function HomePage() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
                 <div>
                   <h3 className="font-display font-deva" style={{ fontSize: 20, fontWeight: 800, color: 'var(--earth)' }}>{t.box1_name}</h3>
-                  <p className="font-deva" style={{ fontSize: 13, color: '#8B7355', marginTop: 4 }}>{t.box1_weight}</p>
+                  <p className="font-deva" style={{ fontSize: 13, color: '#8B7355', marginTop: 4 }}>Choose your size</p>
                 </div>
-                <div style={{ textAlign: 'right' }}>
-                  <p className="font-deva" style={{ fontSize: 12, color: '#8B7355', textDecoration: 'line-through', marginBottom: 2 }}>
-                    {(t as any).box1_old_price}
-                  </p>
-                  <p className="font-display" style={{ fontSize: 26, fontWeight: 900, color: 'var(--amber)' }}>{t.box1_price}</p>
-                </div>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 12 }}>
+                {pricing.dozen1.map((row) => (
+                  <div key={row.label} style={{ border: '1px solid rgba(244,171,37,0.2)', borderRadius: 12, padding: '8px 10px', background: '#fffaf0' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }}>
+                      <div>
+                        <p className="font-deva" style={{ fontSize: 13, fontWeight: 700, color: 'var(--earth)', lineHeight: 1.1 }}>{row.label}</p>
+                        <p className="font-deva" style={{ fontSize: 12, color: '#6B5240', marginTop: 2 }}>{row.weight}</p>
+                      </div>
+                      <div style={{ textAlign: 'right' }}>
+                        <p className="font-deva" style={{ fontSize: 11, color: '#8B7355', textDecoration: 'line-through', lineHeight: 1 }}>{row.oldPrice}</p>
+                        <p className="font-display" style={{ fontSize: 19, fontWeight: 900, color: 'var(--amber)', lineHeight: 1.1 }}>{row.price}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
               <ul style={{ margin: '12px 0', listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {ui.box1Features.map(item => (
@@ -433,15 +479,24 @@ export default function HomePage() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
                 <div>
                   <h3 className="font-display font-deva" style={{ fontSize: 20, fontWeight: 800, color: 'var(--earth)' }}>{t.box2_name}</h3>
-                  <p className="font-deva" style={{ fontSize: 13, color: '#8B7355', marginTop: 4 }}>{t.box2_weight}</p>
+                  <p className="font-deva" style={{ fontSize: 13, color: '#8B7355', marginTop: 4 }}>Choose your size</p>
                 </div>
-                <div style={{ textAlign: 'right' }}>
-                  <p className="font-deva" style={{ fontSize: 12, color: '#8B7355', textDecoration: 'line-through', marginBottom: 2 }}>
-                    {(t as any).box2_old_price}
-                  </p>
-                  <p className="font-display" style={{ fontSize: 26, fontWeight: 900, color: 'var(--amber)' }}>{t.box2_price}</p>
-                  <p style={{ fontSize: 10, color: 'var(--forest)', fontWeight: 700, textAlign: 'right' }}>{ui.box2Save}</p>
-                </div>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 12 }}>
+                {pricing.dozen2.map((row) => (
+                  <div key={row.label} style={{ border: '1px solid rgba(244,171,37,0.2)', borderRadius: 12, padding: '8px 10px', background: '#fffaf0' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }}>
+                      <div>
+                        <p className="font-deva" style={{ fontSize: 13, fontWeight: 700, color: 'var(--earth)', lineHeight: 1.1 }}>{row.label}</p>
+                        <p className="font-deva" style={{ fontSize: 12, color: '#6B5240', marginTop: 2 }}>{row.weight}</p>
+                      </div>
+                      <div style={{ textAlign: 'right' }}>
+                        <p className="font-deva" style={{ fontSize: 11, color: '#8B7355', textDecoration: 'line-through', lineHeight: 1 }}>{row.oldPrice}</p>
+                        <p className="font-display" style={{ fontSize: 19, fontWeight: 900, color: 'var(--amber)', lineHeight: 1.1 }}>{row.price}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
               <ul style={{ margin: '12px 0', listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {ui.box2Features.map(item => (
