@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { SITE, WA, translations, type Lang } from '@/lib/config'
 
 // ──────────────────────────────────────────────────────────
@@ -422,10 +423,38 @@ export default function HomePage() {
           {/* Box 1 — 1 Dozen */}
           <div className="card relative" data-animate>
             <div className="ribbon">{t.box1_badge}</div>
-            <div style={{
-              height: 200, overflow: 'hidden',
-              background: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuA3KzgjUmhxsc3aVs3Rz7XfR796atZejhWPtdzNxSfpaMLU2rBlmaWntdfMwhLrdKnDaKbC_w6PgGgaRRiCBMDbYZ-zXcNqb9x3flGvXIEOR8GwDvHpbZbF_BVkPiNhRiCTcz05FDMPZORKijZXXkc_2b4UEru6em5xAj2oBVDHiiubM1NAUCCsKuAIkECiqunHqul5CNuMSrwkFs3F3SZ6GLiLepX11FNSjCpRLk3H9OwEb_e4mD9xgZ0c-3PdwOM5Vie472jd9gc') center/cover no-repeat`,
-            }} />
+            <div style={{ padding: 14, paddingBottom: 0 }}>
+              <div style={{ position: 'relative', width: '100%', height: 190, borderRadius: 14, overflow: 'hidden', marginBottom: 8 }}>
+                <Image
+                  src="/1_dozen_main.jpeg"
+                  alt="Shivneri Hapus 1 dozen premium mangoes"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 430px) 100vw, 430px"
+                  priority={false}
+                />
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                <div style={{ position: 'relative', width: '100%', height: 96, borderRadius: 12, overflow: 'hidden' }}>
+                  <Image
+                    src="/1_dozen_2nd.jpeg"
+                    alt="Shivneri Hapus mangoes in orchard bowl"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 430px) 50vw, 215px"
+                  />
+                </div>
+                <div style={{ position: 'relative', width: '100%', height: 96, borderRadius: 12, overflow: 'hidden' }}>
+                  <Image
+                    src="/1_dozen_3rd.jpeg"
+                    alt="Shivneri Hapus 1 dozen packed box"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 430px) 50vw, 215px"
+                  />
+                </div>
+              </div>
+            </div>
             <div style={{ padding: 24 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
                 <div>
