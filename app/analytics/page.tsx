@@ -27,6 +27,41 @@ export default function AnalyticsPage() {
     return Object.entries(report.byEvent).sort((a, b) => b[1] - a[1])
   }, [report])
 
+  const sortedByCity = useMemo(() => {
+    if (!report) return []
+    return Object.entries(report.byCity).sort((a, b) => b[1] - a[1])
+  }, [report])
+
+  const sortedByRegion = useMemo(() => {
+    if (!report) return []
+    return Object.entries(report.byRegion).sort((a, b) => b[1] - a[1])
+  }, [report])
+
+  const sortedByCountry = useMemo(() => {
+    if (!report) return []
+    return Object.entries(report.byCountry).sort((a, b) => b[1] - a[1])
+  }, [report])
+
+  const sortedByDevice = useMemo(() => {
+    if (!report) return []
+    return Object.entries(report.byDeviceType).sort((a, b) => b[1] - a[1])
+  }, [report])
+
+  const sortedByTimezone = useMemo(() => {
+    if (!report) return []
+    return Object.entries(report.byTimezone).sort((a, b) => b[1] - a[1])
+  }, [report])
+
+  const sortedByUtmSource = useMemo(() => {
+    if (!report) return []
+    return Object.entries(report.byUtmSource).sort((a, b) => b[1] - a[1])
+  }, [report])
+
+  const sortedByUtmCampaign = useMemo(() => {
+    if (!report) return []
+    return Object.entries(report.byUtmCampaign).sort((a, b) => b[1] - a[1])
+  }, [report])
+
   const unlockAndLoad = async () => {
     if (password !== FRONTEND_PASSWORD) {
       setError('Invalid password')
@@ -109,6 +144,34 @@ export default function AnalyticsPage() {
 
               <Card title="By Label">
                 <pre style={{ margin: 0 }}>{JSON.stringify(Object.fromEntries(sortedByLabel), null, 2)}</pre>
+              </Card>
+
+              <Card title="By City">
+                <pre style={{ margin: 0 }}>{JSON.stringify(Object.fromEntries(sortedByCity), null, 2)}</pre>
+              </Card>
+
+              <Card title="By Region">
+                <pre style={{ margin: 0 }}>{JSON.stringify(Object.fromEntries(sortedByRegion), null, 2)}</pre>
+              </Card>
+
+              <Card title="By Country">
+                <pre style={{ margin: 0 }}>{JSON.stringify(Object.fromEntries(sortedByCountry), null, 2)}</pre>
+              </Card>
+
+              <Card title="By Device Type">
+                <pre style={{ margin: 0 }}>{JSON.stringify(Object.fromEntries(sortedByDevice), null, 2)}</pre>
+              </Card>
+
+              <Card title="By Timezone">
+                <pre style={{ margin: 0 }}>{JSON.stringify(Object.fromEntries(sortedByTimezone), null, 2)}</pre>
+              </Card>
+
+              <Card title="By UTM Source">
+                <pre style={{ margin: 0 }}>{JSON.stringify(Object.fromEntries(sortedByUtmSource), null, 2)}</pre>
+              </Card>
+
+              <Card title="By UTM Campaign">
+                <pre style={{ margin: 0 }}>{JSON.stringify(Object.fromEntries(sortedByUtmCampaign), null, 2)}</pre>
               </Card>
 
               <Card title="Recent Events (latest first)">

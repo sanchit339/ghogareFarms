@@ -218,7 +218,25 @@ export default function HomePage() {
   ) => {
     if (typeof window === 'undefined') return
 
-    const body = JSON.stringify({ event, payload: { ...payload, path: window.location.pathname } })
+    const search = new URLSearchParams(window.location.search)
+    const ua = navigator.userAgent.toLowerCase()
+    const deviceType = /mobile|android|iphone|ipad/.test(ua) ? 'mobile' : 'desktop'
+
+    const body = JSON.stringify({
+      event,
+      payload: {
+        ...payload,
+        path: window.location.pathname,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        browserLang: navigator.language,
+        deviceType,
+        utmSource: search.get('utm_source') || undefined,
+        utmMedium: search.get('utm_medium') || undefined,
+        utmCampaign: search.get('utm_campaign') || undefined,
+        utmTerm: search.get('utm_term') || undefined,
+        utmContent: search.get('utm_content') || undefined,
+      },
+    })
 
     try {
       if (navigator.sendBeacon) {

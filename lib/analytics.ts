@@ -17,6 +17,17 @@ export type AnalyticsEvent = {
   referrer?: string
   ua?: string
   ip?: string
+  country?: string
+  region?: string
+  city?: string
+  timezone?: string
+  deviceType?: string
+  browserLang?: string
+  utmSource?: string
+  utmMedium?: string
+  utmCampaign?: string
+  utmTerm?: string
+  utmContent?: string
 }
 
 export type AnalyticsReport = {
@@ -32,6 +43,13 @@ export type AnalyticsReport = {
   byPath: Record<string, number>
   byLang: Record<string, number>
   byLabel: Record<string, number>
+  byCountry: Record<string, number>
+  byRegion: Record<string, number>
+  byCity: Record<string, number>
+  byTimezone: Record<string, number>
+  byDeviceType: Record<string, number>
+  byUtmSource: Record<string, number>
+  byUtmCampaign: Record<string, number>
   recent: AnalyticsEvent[]
 }
 
@@ -83,6 +101,13 @@ export async function getAnalyticsReport(limitRecent = 50): Promise<AnalyticsRep
     byPath: {},
     byLang: {},
     byLabel: {},
+    byCountry: {},
+    byRegion: {},
+    byCity: {},
+    byTimezone: {},
+    byDeviceType: {},
+    byUtmSource: {},
+    byUtmCampaign: {},
     recent: events.slice(-limitRecent).reverse(),
   }
 
@@ -95,6 +120,13 @@ export async function getAnalyticsReport(limitRecent = 50): Promise<AnalyticsRep
     if (evt.path) report.byPath[evt.path] = (report.byPath[evt.path] ?? 0) + 1
     if (evt.lang) report.byLang[evt.lang] = (report.byLang[evt.lang] ?? 0) + 1
     if (evt.label) report.byLabel[evt.label] = (report.byLabel[evt.label] ?? 0) + 1
+    if (evt.country) report.byCountry[evt.country] = (report.byCountry[evt.country] ?? 0) + 1
+    if (evt.region) report.byRegion[evt.region] = (report.byRegion[evt.region] ?? 0) + 1
+    if (evt.city) report.byCity[evt.city] = (report.byCity[evt.city] ?? 0) + 1
+    if (evt.timezone) report.byTimezone[evt.timezone] = (report.byTimezone[evt.timezone] ?? 0) + 1
+    if (evt.deviceType) report.byDeviceType[evt.deviceType] = (report.byDeviceType[evt.deviceType] ?? 0) + 1
+    if (evt.utmSource) report.byUtmSource[evt.utmSource] = (report.byUtmSource[evt.utmSource] ?? 0) + 1
+    if (evt.utmCampaign) report.byUtmCampaign[evt.utmCampaign] = (report.byUtmCampaign[evt.utmCampaign] ?? 0) + 1
 
     if (evt.event === 'page_view') report.totals.pageViews += 1
     if (evt.event === 'wa_click') report.totals.waClicks += 1

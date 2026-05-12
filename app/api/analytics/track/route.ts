@@ -21,6 +21,10 @@ export async function POST(req: NextRequest) {
 
     const payload = (body?.payload ?? {}) as Partial<AnalyticsEvent>
     const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+    const ua = req.headers.get('user-agent') ?? undefined
+    const country = req.headers.get('x-vercel-ip-country') ?? payload.country
+    const region = req.headers.get('x-vercel-ip-country-region') ?? payload.region
+    const city = req.headers.get('x-vercel-ip-city') ?? payload.city
 
     await appendEvent({
       ts: new Date().toISOString(),
@@ -30,8 +34,19 @@ export async function POST(req: NextRequest) {
       label: payload.label,
       type: payload.type,
       referrer: payload.referrer,
-      ua: req.headers.get('user-agent') ?? undefined,
+      ua,
       ip,
+      country: country ?? undefined,
+      region: region ?? undefined,
+      city: city ?? undefined,
+      timezone: payload.timezone,
+      deviceType: payload.deviceType,
+      browserLang: payload.browserLang,
+      utmSource: payload.utmSource,
+      utmMedium: payload.utmMedium,
+      utmCampaign: payload.utmCampaign,
+      utmTerm: payload.utmTerm,
+      utmContent: payload.utmContent,
     })
 
     return NextResponse.json({ ok: true })

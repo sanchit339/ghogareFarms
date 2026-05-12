@@ -28,7 +28,7 @@ Search for `₹XXX` and replace with real prices:
 - `box2_price`: Price for 2 dozen
 
 ### Step 3 — Add Your Images
-- `/public/og-image.jpg` → 1200×630px farm photo (used by Facebook/WhatsApp preview)
+- `/public/og-image.jpeg` → 1200×630px farm photo (used by Facebook/WhatsApp preview)
 - `/public/favicon.ico` → Your favicon
 - `/public/apple-touch-icon.png` → 180×180px icon
 - `/public/icon-192.png` & `/public/icon-512.png` → PWA icons
@@ -49,6 +49,45 @@ Or connect GitHub repo to https://vercel.com for auto-deploy on every push.
 
 ---
 
+## 🤖 Release Flow (Vercel auto + manual production deploy)
+
+This repo includes:
+- `.github/workflows/release-vercel.yml`
+- `scripts/deploy-production.sh`
+
+### What this pipeline does now
+1. On push to `main`, deploys to **Vercel production**.
+2. Production server deployment is **manual** (you run the script when needed).
+
+### GitHub Secrets to add (Repository → Settings → Secrets and variables → Actions)
+Required secrets:
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+### Production server prerequisites (one-time)
+1. Clone this repository at `/var/www/ghogare-farms` (or update paths accordingly).
+2. Ensure Node.js + npm are installed.
+3. Ensure process runner is configured:
+   - PM2 (recommended), or
+   - systemd service (set `PROD_SYSTEMD_SERVICE`), or
+   - direct `PROD_RESTART_COMMAND`.
+4. Confirm server can run:
+   ```bash
+   cd /var/www/ghogare-farms
+   chmod +x scripts/deploy-production.sh
+   ./scripts/deploy-production.sh main
+   ```
+
+### Manual production release command
+Run this on your server whenever you want to pull the latest GitHub release to production:
+```bash
+cd /var/www/ghogare-farms
+./scripts/deploy-production.sh main
+```
+
+---
+
 ## 📁 Project Structure
 
 ```
@@ -62,7 +101,7 @@ ghogare-farms/
 ├── lib/
 │   └── config.ts           ← ⭐ Update this first! All site settings + translations
 ├── public/
-│   ├── og-image.jpg        ← Add your farm photo here (1200×630)
+│   ├── og-image.jpeg       ← Add your farm photo here (1200×630)
 │   ├── favicon.ico         ← Add your favicon
 │   └── site.webmanifest    ← PWA manifest
 ├── tailwind.config.ts      ← Design tokens
@@ -200,7 +239,7 @@ npm run start
 - [ ] Updated WhatsApp group link
 - [ ] Updated Instagram handle
 - [ ] Set real prices (₹XXX → actual prices)
-- [ ] Added og-image.jpg (farm photo, 1200×630px)
+- [ ] Added og-image.jpeg (farm photo, 1200×630px)
 - [ ] Added favicon.ico
 - [ ] Added Facebook Pixel ID
 - [ ] Added Google Analytics ID
