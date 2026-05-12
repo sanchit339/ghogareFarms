@@ -190,6 +190,7 @@ NEXT_PUBLIC_FB_PIXEL_ID=your_pixel_id
 NEXT_PUBLIC_GA_ID=G-your_ga_id
 NEXT_PUBLIC_WA_NUMBER=91XXXXXXXXXX
 NEXT_PUBLIC_WA_GROUP=https://chat.whatsapp.com/your_group
+ANALYTICS_PIN=your_secret_pin_code
 ```
 
 ---
@@ -203,6 +204,12 @@ NEXT_PUBLIC_WA_GROUP=https://chat.whatsapp.com/your_group
 ---
 
 ## 📊 Analytics Setup
+
+### Built-in Privacy-friendly Dashboard
+This project includes a built-in analytics dashboard at `/analytics`.
+- **Protection:** Set the `ANALYTICS_PIN` environment variable to protect this route.
+- **Features:** Tracks page views, WhatsApp clicks, locations, and UTM parameters without cookies.
+
 
 ### Google Analytics 4 Goals to Create:
 1. WhatsApp click (Event: `click` → outbound link to wa.me)
