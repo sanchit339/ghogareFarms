@@ -212,9 +212,36 @@ export default function HomePage() {
     }
   }
 
+  const trackEvent = (
+    event: 'page_view' | 'wa_click' | 'subscribe_click' | 'social_click',
+    payload: Record<string, unknown> = {}
+  ) => {
+    if (typeof window === 'undefined') return
+
+    const body = JSON.stringify({ event, payload: { ...payload, path: window.location.pathname } })
+
+    try {
+      if (navigator.sendBeacon) {
+        const blob = new Blob([body], { type: 'application/json' })
+        navigator.sendBeacon('/api/analytics/track', blob)
+        return
+      }
+    } catch {
+      // noop
+    }
+
+    fetch('/api/analytics/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body,
+      keepalive: true,
+    }).catch(() => {})
+  }
+
   const handleWAClick = (type: keyof typeof WA, label: string) => {
     fbEvent('Contact', { content_name: label, method: 'WhatsApp' })
     fbEvent('Lead', { content_name: label })
+    trackEvent('wa_click', { type, label, lang })
   }
 
   const waLink = (type: keyof typeof WA) => WA[type](SITE.whatsapp)
@@ -232,6 +259,12 @@ export default function HomePage() {
     }, 2800)
     return () => clearInterval(id)
   }, [dozen2Images.length])
+
+  useEffect(() => {
+    trackEvent('page_view', { lang, referrer: document.referrer || undefined })
+    // Track page view once per page load.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <main
@@ -347,7 +380,10 @@ export default function HomePage() {
             </a>
             <a
               href={SITE.waGroupLink}
-              onClick={() => fbEvent('Subscribe', { content_name: 'WA Group' })}
+              onClick={() => {
+                fbEvent('Subscribe', { content_name: 'WA Group' })
+                trackEvent('subscribe_click', { label: 'Hero WA Group', lang })
+              }}
               className="btn-amber"
               style={{ flex: 1, borderRadius: '9999px' }}
             >
@@ -837,7 +873,10 @@ export default function HomePage() {
                 href={SITE.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => fbEvent('ViewContent', { content_name: 'Instagram' })}
+                onClick={() => {
+                  fbEvent('ViewContent', { content_name: 'Instagram' })
+                  trackEvent('social_click', { label: 'Instagram', lang })
+                }}
                 className="btn-amber"
                 style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', backdropFilter: 'blur(8px)', border: '1.5px solid rgba(255,255,255,0.4)' }}
               >
@@ -865,7 +904,10 @@ export default function HomePage() {
               </div>
               <a
                 href={SITE.waGroupLink}
-                onClick={() => fbEvent('Subscribe', { content_name: 'WA Group' })}
+                onClick={() => {
+                  fbEvent('Subscribe', { content_name: 'WA Group' })
+                  trackEvent('subscribe_click', { label: 'Bottom WA Group', lang })
+                }}
                 className="btn-wa"
                 style={{ background: 'rgba(255,255,255,0.25)', color: '#fff', backdropFilter: 'blur(8px)', border: '1.5px solid rgba(255,255,255,0.4)' }}
               >
