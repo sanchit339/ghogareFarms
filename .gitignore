@@ -27,4 +27,7 @@ pnpm-debug.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+# data storage (DO server persistence)
+/.data/
+/.analytics/
+
