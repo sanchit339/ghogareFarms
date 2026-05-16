@@ -1,3 +1,4 @@
+import { put, list } from '@vercel/blob'
 import { promises as fs } from 'fs'
 import path from 'path'
 
@@ -53,40 +54,61 @@ export type AnalyticsReport = {
   recent: AnalyticsEvent[]
 }
 
-const analyticsDir = path.join(process.cwd(), '.analytics')
-const eventsFile = path.join(analyticsDir, 'events.jsonl')
-
-async function ensureStore() {
-  await fs.mkdir(analyticsDir, { recursive: true })
-}
+const isVercel = !!process.env.VERCEL
+const EVENTS_BLOB_PREFIX = 'analytics/events-'
 
 export async function appendEvent(event: AnalyticsEvent) {
-  await ensureStore()
-  await fs.appendFile(eventsFile, `${JSON.stringify(event)}\n`, 'utf8')
+  if (isVercel) {
+    // Clever trick: For analytics, we save each event as a small individual blob
+    // and aggregate them in the report. This avoids read-modify-write race conditions
+    // and works perfectly with Vercel's stateless functions.
+    const filename = `${EVENTS_BLOB_PREFIX}${Date.now()}-${Math.random().toString(36).slice(2)}.json`
+    await put(filename, JSON.stringify(event), {
+      access: 'public',
+      contentType: 'application/json',
+    })
+  } else {
+    const analyticsDir = path.join(process.cwd(), '.analytics')
+    const eventsFile = path.join(analyticsDir, 'events.jsonl')
+    await fs.mkdir(analyticsDir, { recursive: true })
+    await fs.appendFile(eventsFile, `${JSON.stringify(event)}\n`, 'utf8')
+  }
 }
 
 async function readEvents(): Promise<AnalyticsEvent[]> {
-  try {
-    const raw = await fs.readFile(eventsFile, 'utf8')
-    return raw
-      .split('\n')
-      .map((line) => line.trim())
-      .filter(Boolean)
-      .map((line) => {
-        try {
-          return JSON.parse(line) as AnalyticsEvent
-        } catch {
-          return null
-        }
+  if (isVercel) {
+    try {
+      const { blobs } = await list({ prefix: EVENTS_BLOB_PREFIX })
+      const eventPromises = blobs.map(async (blob) => {
+        const res = await fetch(blob.url)
+        return await res.json() as AnalyticsEvent
       })
-      .filter((item): item is AnalyticsEvent => item !== null)
-  } catch {
-    return []
+      return await Promise.all(eventPromises)
+    } catch (e) {
+      console.error('Blob read error:', e)
+      return []
+    }
+  } else {
+    try {
+      const analyticsDir = path.join(process.cwd(), '.analytics')
+      const eventsFile = path.join(analyticsDir, 'events.jsonl')
+      const raw = await fs.readFile(eventsFile, 'utf8')
+      return raw
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line) => JSON.parse(line) as AnalyticsEvent)
+    } catch {
+      return []
+    }
   }
 }
 
 export async function getAnalyticsReport(limitRecent = 50): Promise<AnalyticsReport> {
   const events = await readEvents()
+  
+  // Sort events by timestamp (they might be out of order from blob storage)
+  events.sort((a, b) => new Date(a.ts).getTime() - new Date(b.ts).getTime())
 
   const report: AnalyticsReport = {
     totals: {
@@ -140,3 +162,4 @@ export async function getAnalyticsReport(limitRecent = 50): Promise<AnalyticsRep
 export function getAnalyticsPin() {
   return process.env.ANALYTICS_PIN ?? ''
 }
+

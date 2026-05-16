@@ -1,8 +1,11 @@
+import { put, list } from '@vercel/blob'
 import { promises as fs } from 'fs'
 import path from 'path'
 
-const dataDir = path.join(process.cwd(), '.data')
-const pricesFile = path.join(dataDir, 'prices.json')
+// Clever trick: We use Vercel Blob for production persistence 
+// but fall back to local filesystem for development/local runs.
+const isVercel = !!process.env.VERCEL
+const PRICES_BLOB_PATH = 'data/prices.json'
 
 export type PriceConfig = {
   dozen1: {
@@ -27,15 +30,39 @@ const defaultPrices: PriceConfig = {
 }
 
 export async function getPrices(): Promise<PriceConfig> {
-  try {
-    const raw = await fs.readFile(pricesFile, 'utf8')
-    return JSON.parse(raw) as PriceConfig
-  } catch {
-    return defaultPrices
+  if (isVercel) {
+    try {
+      const { blobs } = await list({ prefix: PRICES_BLOB_PATH })
+      if (blobs.length > 0) {
+        const res = await fetch(blobs[0].url)
+        return await res.json()
+      }
+    } catch (e) {
+      console.error('Blob read error:', e)
+    }
+  } else {
+    try {
+      const dataDir = path.join(process.cwd(), '.data')
+      const pricesFile = path.join(dataDir, 'prices.json')
+      const raw = await fs.readFile(pricesFile, 'utf8')
+      return JSON.parse(raw) as PriceConfig
+    } catch {}
   }
+  return defaultPrices
 }
 
 export async function savePrices(prices: PriceConfig) {
-  await fs.mkdir(dataDir, { recursive: true })
-  await fs.writeFile(pricesFile, JSON.stringify(prices, null, 2), 'utf8')
+  if (isVercel) {
+    await put(PRICES_BLOB_PATH, JSON.stringify(prices, null, 2), {
+      access: 'public',
+      addRandomSuffix: false,
+      contentType: 'application/json',
+    })
+  } else {
+    const dataDir = path.join(process.cwd(), '.data')
+    const pricesFile = path.join(dataDir, 'prices.json')
+    await fs.mkdir(dataDir, { recursive: true })
+    await fs.writeFile(pricesFile, JSON.stringify(prices, null, 2), 'utf8')
+  }
 }
+
