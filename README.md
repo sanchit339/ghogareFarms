@@ -3,7 +3,7 @@
 GI Tagged Shivneri Hapus Alphonso Mangoes from Junnar delivered straight to Pune.
 
 ## 🚀 Quick Start
-1. **Setup Config**: Update `lib/config.ts` with your phone number, WhatsApp group, and Instagram handle.
+1. **Setup Config**: Update `lib/config.ts` with your site settings.
 2. **Deploy**:
    - **UAT (Vercel)**: Connect your repo to Vercel for automatic previews.
    - **Production (DigitalOcean)**: 
@@ -13,7 +13,7 @@ GI Tagged Shivneri Hapus Alphonso Mangoes from Junnar delivered straight to Pune
      ```
 
 ## ⚙️ Admin Dashboards
-Both dashboards are protected by PIN: **2458** (default).
+Both dashboards are protected by PIN. Use the `ANALYTICS_PIN` and `FRONTEND_PASSWORD` environment variables to configure security.
 
 - **/settings**: Update selling prices and "fake MRP" in real-time.
 - **/analytics**: Track visitors, WhatsApp leads, and marketing performance.
